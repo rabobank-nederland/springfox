@@ -202,10 +202,19 @@ class TypesForTestingSupport {
     resolver.resolve(TypeForTestingPropertyPositions)
   }
 
+  def ResolvedType typeForInheritedComplexType() {
+    resolver.resolve(InheritedComplexType)
+  }
+
+  def ResolvedType typeForComplexType() {
+    resolver.resolve(ComplexType)
+  }
+
   def ResolvedType typeWithVoidLists() {
     resolver.resolve(GenericTypeBoundToMultiple, Void.class, Void.class)
   }
   def ResolvedType genericResource() {
     resolver.resolve(Resource, SubclassOfResourceSupport.class)
   }
+
 }

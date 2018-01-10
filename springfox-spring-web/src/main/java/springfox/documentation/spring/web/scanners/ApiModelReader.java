@@ -114,6 +114,7 @@ public class ApiModelReader  {
                 .discriminator(targetModelValue.getDiscriminator())
                 .subTypes(targetModelValue.getSubTypes())
                 .example(targetModelValue.getExample())
+                .parent(targetModelValue.getParent())
                 .build();
 
         target.put(sourceModelKey, mergedModel);
