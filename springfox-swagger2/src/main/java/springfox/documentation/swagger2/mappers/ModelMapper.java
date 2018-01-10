@@ -117,7 +117,7 @@ public abstract class ModelMapper {
 
   public Model mapComposedProperties(springfox.documentation.schema.Model source) {
     ComposedModel model = new ComposedModel()
-      .interfaces(Collections.singletonList(new RefModel(source.getParent().getName())))
+      .interfaces(Collections.singletonList(new RefModel(source.getParent().getType())))
       .child(mapProperties(source));
 
     model.setDescription(source.getDescription());

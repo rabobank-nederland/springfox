@@ -37,7 +37,7 @@ public class Model {
   private final List<String> subTypes;
   private final String example;
   private final Xml xml;
-  private final Model parent;
+  private final ModelReference parent;
 
   public Model(
       String id,
@@ -49,7 +49,7 @@ public class Model {
       String baseModel,
       String discriminator,
       List<String> subTypes,
-      Model parent,
+      ModelReference parent,
       String example,
       Xml xml) {
 
@@ -111,7 +111,7 @@ public class Model {
     return xml;
   }
 
-  public Model getParent() {
+  public ModelReference getParent() {
     return parent;
   }
 }

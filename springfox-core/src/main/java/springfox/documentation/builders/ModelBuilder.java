@@ -22,6 +22,7 @@ package springfox.documentation.builders;
 import com.fasterxml.classmate.ResolvedType;
 import springfox.documentation.schema.Model;
 import springfox.documentation.schema.ModelProperty;
+import springfox.documentation.schema.ModelReference;
 import springfox.documentation.schema.Xml;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class ModelBuilder {
   private ResolvedType modelType;
   private String example;
   private Xml xml;
-  private Model parent;
+  private ModelReference parent;
 
   private Map<String, ModelProperty> properties = newHashMap();
   private List<String> subTypes = newArrayList();
@@ -165,7 +166,7 @@ public class ModelBuilder {
    * @param parent - resolved type that represents the parent model
    * @return this
    */
-  public ModelBuilder parent(Model parent) {
+  public ModelBuilder parent(ModelReference parent) {
     this.parent = defaultIfAbsent(parent, this.parent);
     return this;
   }

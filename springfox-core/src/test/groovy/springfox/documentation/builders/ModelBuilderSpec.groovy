@@ -23,6 +23,7 @@ import com.fasterxml.classmate.TypeResolver
 import spock.lang.Specification
 import springfox.documentation.schema.Model
 import springfox.documentation.schema.ModelProperty
+import springfox.documentation.schema.ModelReference
 
 class ModelBuilderSpec extends Specification {
   def "Setting properties on the builder with non-null values"() {
@@ -47,7 +48,7 @@ class ModelBuilderSpec extends Specification {
       'subTypes'      | ["String"]                            | 'subTypes'
       'properties'    | [p1: Mock(ModelProperty)]             | 'properties'
       'example'       | 'example1'                            | 'example'
-      'parent'        | Mock(Model)                           | 'parent'
+      'parent'        | Mock(ModelReference)                  | 'parent'
   }
 
   def "Setting builder properties to null values preserves existing values"() {
@@ -73,6 +74,6 @@ class ModelBuilderSpec extends Specification {
       'subTypes'      | ["String"]                            | 'subTypes'
       'properties'    | [p1: Mock(ModelProperty)]             | 'properties'
       'example'       | 'example1'                            | 'example'
-      'parent'        | Mock(Model)                           | 'parent'
+      'parent'        | Mock(ModelReference)                  | 'parent'
   }
 }
