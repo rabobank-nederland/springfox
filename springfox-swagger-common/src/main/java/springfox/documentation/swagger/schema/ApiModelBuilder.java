@@ -45,15 +45,12 @@ import static springfox.documentation.swagger.common.SwaggerPluginSupport.*;
 @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER)
 public class ApiModelBuilder implements ModelBuilderPlugin {
   private final TypeResolver typeResolver;
-  private final ModelProvider modelProvider;
   private final TypeNameExtractor typeNameExtractor;
 
   @Autowired
   public ApiModelBuilder(TypeResolver typeResolver,
-                         @Qualifier("cachedModels") ModelProvider modelProvider,
                          TypeNameExtractor typeNameExtractor) {
     this.typeResolver = typeResolver;
-    this.modelProvider = modelProvider;
     this.typeNameExtractor = typeNameExtractor;
   }
 
