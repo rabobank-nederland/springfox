@@ -20,6 +20,7 @@ package springfox.documentation.swagger.schema
 
 import com.fasterxml.classmate.TypeResolver
 import com.google.common.collect.ImmutableSet
+import groovy.transform.CompileStatic
 import io.swagger.annotations.ApiModel
 import spock.lang.Shared
 import springfox.documentation.schema.DefaultGenericTypeNamingStrategy
@@ -33,7 +34,7 @@ class ApiModelBuilderSpec extends SchemaSpecification {
 
   def "Should all swagger documentation types"() {
     given:
-      def sut = new ApiModelBuilder(resolver, modelProvider)
+      def sut = new ApiModelBuilder(resolver, typeNameExtractor)
     expect:
       !sut.supports(DocumentationType.SPRING_WEB)
       sut.supports(DocumentationType.SWAGGER_12)
@@ -42,7 +43,7 @@ class ApiModelBuilderSpec extends SchemaSpecification {
 
   def "Api model builder parses ApiModel annotation as expected" () {
     given:
-      ApiModelBuilder sut = new ApiModelBuilder(resolver, modelProvider)
+      ApiModelBuilder sut = new ApiModelBuilder(resolver, typeNameExtractor)
       ModelContext context = ModelContext.inputParam(
           "group",
           type,
@@ -68,7 +69,7 @@ class ApiModelBuilderSpec extends SchemaSpecification {
 
   def "Api model builder parses ApiModel annotation discriminator as expected" () {
     given:
-      ApiModelBuilder sut = new ApiModelBuilder(resolver, modelProvider)
+      ApiModelBuilder sut = new ApiModelBuilder(resolver, typeNameExtractor)
       ModelContext context = ModelContext.inputParam("group", type, documentationType,
           new AlternateTypeProvider([]), new DefaultGenericTypeNamingStrategy(), ImmutableSet.of())
     when:
@@ -89,7 +90,7 @@ class ApiModelBuilderSpec extends SchemaSpecification {
 
   def "Api model builder parses ApiModel annotation parent as expected" () {
     given:
-      ApiModelBuilder sut = new ApiModelBuilder(resolver, modelProvider)
+      ApiModelBuilder sut = new ApiModelBuilder(resolver, typeNameExtractor)
     ModelContext context = ModelContext.inputParam("group", type, documentationType,
             new AlternateTypeProvider([]), new DefaultGenericTypeNamingStrategy(), ImmutableSet.of())
     when:
@@ -97,7 +98,7 @@ class ApiModelBuilderSpec extends SchemaSpecification {
     and:
       def enriched = context.builder.build()
     then:
-      enriched.parent.name == expected
+      enriched.parent.type == expected
     where:
       type                | expected
       ParentTest          | "DiscriminatorTest"
@@ -111,7 +112,7 @@ class ApiModelBuilderSpec extends SchemaSpecification {
 
   def "Api model builder parses ApiModel annotation without parent" () {
     given:
-      ApiModelBuilder sut = new ApiModelBuilder(resolver, modelProvider)
+      ApiModelBuilder sut = new ApiModelBuilder(resolver, typeNameExtractor)
     ModelContext context = ModelContext.inputParam("group", type, documentationType,
             new AlternateTypeProvider([]), new DefaultGenericTypeNamingStrategy(), ImmutableSet.of())
     when:

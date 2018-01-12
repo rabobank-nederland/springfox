@@ -19,18 +19,17 @@
 
 package springfox.documentation.swagger.schema;
 
-import com.fasterxml.classmate.TypeResolver;
-import com.google.common.base.Optional;
-import io.swagger.annotations.ApiModel;
+import static springfox.documentation.swagger.common.SwaggerPluginSupport.pluginDoesApply;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import springfox.documentation.schema.Model;
-import springfox.documentation.schema.ModelProvider;
-import springfox.documentation.schema.ModelRef;
+
+import com.fasterxml.classmate.TypeResolver;
+
+import io.swagger.annotations.ApiModel;
 import springfox.documentation.schema.ModelReference;
 import springfox.documentation.schema.ResolvedTypes;
 import springfox.documentation.schema.TypeNameExtractor;
@@ -38,8 +37,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.schema.ModelBuilderPlugin;
 import springfox.documentation.spi.schema.contexts.ModelContext;
 import springfox.documentation.swagger.common.SwaggerPluginSupport;
-
-import static springfox.documentation.swagger.common.SwaggerPluginSupport.*;
 
 @Component
 @Order(SwaggerPluginSupport.SWAGGER_PLUGIN_ORDER)
