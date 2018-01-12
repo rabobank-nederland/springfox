@@ -118,4 +118,12 @@ class ModelProviderSupport {
     modelDependencyProvider(typeResolver, modelPropertiesProvider, typeNameExtractor)
   }
 
+  TypeNameExtractor defaultTypeNameExtractor() {
+     new TypeNameExtractor(
+                    new TypeResolver(),
+                    OrderAwarePluginRegistry.create([new DefaultTypeNameProvider()]),
+                    new JacksonEnumTypeDeterminer())
+
+  }
+
 }

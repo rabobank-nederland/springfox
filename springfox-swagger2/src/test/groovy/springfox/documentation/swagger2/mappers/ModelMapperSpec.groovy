@@ -506,19 +506,7 @@ class ModelMapperSpec extends SchemaSpecification {
 
     def modelParentType = typeForComplexType()
 
-    def modelParent = new Model(
-            'ComplexType',
-            'ComplexType',
-            modelParentType,
-            simpleQualifiedTypeName(modelParentType),
-            ['inheritedProperty' : createModelPropertyWithPosition('name', 0)],
-            '',
-            '',
-            'name',
-            null,
-            null,
-            '',
-            null)
+    def modelParentReference = new ModelRef("ComplexType")
 
     def modelType = typeForInheritedComplexType()
     def model = new Model(
@@ -531,7 +519,7 @@ class ModelMapperSpec extends SchemaSpecification {
             '',
             '',
             null,
-            modelParent,
+            modelParentReference,
             '',
             null)
     model

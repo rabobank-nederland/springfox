@@ -55,7 +55,7 @@ class SwaggerPluginsSupport {
         create(newArrayList(new ApiModelPropertyPropertyBuilder(descriptions)))
 
     PluginRegistry<ModelBuilderPlugin, DocumentationType> modelRegistry =
-        create(newArrayList(new ApiModelBuilder(new TypeResolver(), defaultModelProvider())))
+        create(newArrayList(new ApiModelBuilder(new TypeResolver(), defaultTypeNameExtractor())))
 
     new SchemaPluginsManager(propRegistry, modelRegistry)
   }
